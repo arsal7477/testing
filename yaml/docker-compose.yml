@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+ web:
+  image: python:3.9-slim
+  working_dir: /app
+  volumes:
+    - ./app:/app
+  ports:
+  - "5000:5000"
+  depends_on:
+  - db
+  command: ["python","app.py"]
+
+
+ db:
+  image: postgres:latest
+  ports:
+  - "5432:5432"
+  environment:
+   POSTGRES_USER: arsal
+   POSTGRES_PASSWORD: arsalan
+   POSTGRES_DB: mydb
